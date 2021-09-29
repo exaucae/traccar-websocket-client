@@ -1,0 +1,23 @@
+{
+  "properties": [
+    {
+      "name": "traccar.name",
+      "type": "java.lang.String",
+      "description": "Description for traccar.name."
+    },
+    {
+      "name": "traccar.secret",
+      "type": "java.lang.String",
+      "description": "Description for traccar.secret."
+    },
+    {
+      "name": "traccar.login",
+      "type": "java.lang.String",
+      "description": "Description for traccar.login."
+    },
+    {
+      "name": "traccar.wSname",
+      "type": "java.lang.String",
+      "description": "Description for traccar.wSname."
+    }
+  ]}

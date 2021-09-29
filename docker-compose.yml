@@ -1,0 +1,38 @@
+version: '3'
+
+networks:
+  traccarnet:
+    driver: bridge
+
+volumes:
+  traccar_db: { }
+
+services:
+  traccar-db:
+    container_name: traccar_db
+    hostname: traccar_db
+    image: mysql
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - 3306:3306
+    volumes:
+      - ./mysql.sql:/docker-entrypoint-initdb.d/mysql.sql
+    networks:
+      - traccarnet
+
+  traccar:
+    container_name: traccar
+    image: traccar/traccar:4.12-alpine
+    hostname: traccar
+    restart: always
+    ports:
+      - 5000-5150:5000-5150
+      - 82:8082
+    volumes:
+      - ./traccar.xml:/opt/traccar/conf/traccar.xml:rw
+    networks:
+      - traccarnet
+    depends_on:
+      - traccar-db
