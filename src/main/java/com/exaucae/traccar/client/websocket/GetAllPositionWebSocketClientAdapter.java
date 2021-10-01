@@ -13,15 +13,15 @@ import org.springframework.web.socket.WebSocketSession;
 class GetAllPositionWebSocketClientAdapter extends AbstractWebSocketClientAdapter implements IGetAllPositionPort {
 
     private final TraccarServerProperties traccarProperties;
-    private final SessionCookieManager cookieManager;
+    private final ISessionCookieCapable cookieRetriever;
 
 
     @Autowired
-    GetAllPositionWebSocketClientAdapter(TraccarServerProperties traccarProperties, SessionCookieManager cookieManager) {
+    GetAllPositionWebSocketClientAdapter(TraccarServerProperties traccarProperties, ISessionCookieCapable cookieRetriever) {
         super();
         super.setWebSocketHandler(this);
         this.traccarProperties = traccarProperties;
-        this.cookieManager = cookieManager;
+        this.cookieRetriever = cookieRetriever;
     }
 
     @Override
@@ -39,7 +39,7 @@ class GetAllPositionWebSocketClientAdapter extends AbstractWebSocketClientAdapte
     @Override
     protected WebSocketHttpHeaders getHeaders() {
         WebSocketHttpHeaders httpHeaders = new WebSocketHttpHeaders();
-        String JSESSIONID = cookieManager.getSessionCookieCache().getUnchecked("JSESSIONID");
+        String JSESSIONID = cookieRetriever.getSessionCookieCache().getUnchecked("JSESSIONID");
         httpHeaders.add("Cookie", "JSESSIONID=" + JSESSIONID);
         return httpHeaders;
     }
