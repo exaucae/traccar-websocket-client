@@ -1,4 +1,4 @@
-# Traccar Websocket client
+# Traccar Websocket Client
 
 Springboot client for [traccar websocket endpoint](https://www.traccar.org/traccar-api/).
 
@@ -70,7 +70,5 @@ public class TraccarWebSocketClientApplication {
 Disclaimer: This is a WIP. 80% done.
 
 TODO:
-
-- Finish setting TraccarWebSocketMessage.java
 - Ship the library to maven central
 
